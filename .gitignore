@@ -1,4 +1,4 @@
 node_modules/
-uploads/
-outputs/
+file-compression-backend/uploads/
+file-compression-backend/outputs/
 .env
