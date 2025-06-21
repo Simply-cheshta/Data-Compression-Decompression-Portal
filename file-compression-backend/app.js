@@ -35,7 +35,7 @@ app.post('/uploads', (req, res) => {
     }
 
     const inputFilePath = `./uploads/${req.file.filename}`;
-    const original = fs.readFileSync(inputFilePath, 'utf8');
+    const original = fs.readFileSync(inputFilePath);
     const compressed = compressRLE(original);
 
     if (!fs.existsSync('./outputs')) {
@@ -45,8 +45,8 @@ app.post('/uploads', (req, res) => {
     const outputFilePath = `./outputs/compressed-${req.file.filename}`;
     fs.writeFileSync(outputFilePath, compressed);
 
-    const originalSize = Buffer.byteLength(original, 'utf8');
-    const compressedSize = Buffer.byteLength(compressed, 'utf8');
+    const originalSize = original.length;
+    const compressedSize = compressed.length;
     const compressionRatio = ((compressedSize / originalSize) * 100).toFixed(2);
 
     res.render('compressed', {
