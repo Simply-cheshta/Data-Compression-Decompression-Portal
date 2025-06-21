@@ -8,13 +8,13 @@
 <body>
     <h1>Compression Complete (RLE)</h1>
 
-    <p><strong>Original File:</strong> <%= originalFile% ></p>
-    <p><strong>Compressed File:</strong> <%= outputFile% ></p>
-    <p><strong>Original Size:</strong> <%= originalSize% ></p>
-    <p><strong>Compressed Size:</strong> <%= originalSize% > bytes</p>
-    <p><strong>Compression Ratio:</strong> <%= compressionRatio% ></p>
+    <p><strong>Original File:</strong> <%= originalFile %></p>
+    <p><strong>Compressed File:</strong> <%= outputFile %></p>
+    <p><strong>Original Size:</strong> <%= originalSize %> bytes</p>
+    <p><strong>Compressed Size:</strong> <%= compressedSize %> bytes</p>
+    <p><strong>Compression Ratio:</strong> <%= compressionRatio %>%</p>
 
-    <a href="/outputs/<%=outputFile%>" download>Download Compressed File</a>
+    <a href="/outputs/<%= outputFile %>" download>Download Compressed File</a>
     <br><br>
     <a href="/">Back to Upload</a>
 </body>

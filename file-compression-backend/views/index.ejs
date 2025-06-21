@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Data Compression Portal</title>
 </head>
 <body>
-    <h1>Upload File for Compression</h1>
-    <form action="/uploads" method="POST" enctype="multipart/form-data" >
-        <input type = "file" name="myFile" required>
-        <button type="submit">Compress(RLE)</button>
-    </form>    
+    <h1>Upload a File for Compression (RLE)</h1>
+
+    <% if (typeof msg !== 'undefined') { %>
+        <p style="color: red;"><%= msg %></p>
+    <% } %>
+
+    <form action="/uploads" method="POST" enctype="multipart/form-data">
+        <input type="file" name="myFile" required>
+        <button type="submit">Compress (RLE)</button>
+    </form>
 </body>
 </html>
