@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const compressRLE = require('./algorithm/rle');
+const {compressRLE,decompressRLE} = require('./algorithm/rle');
 
 const app = express();
 
@@ -56,6 +56,28 @@ app.post('/uploads', (req, res) => {
       compressedSize,
       compressionRatio
     });
+  });
+});
+
+app.post('/decompress',(req,res)=>{
+  upload(req,res,(err)=>{
+    if (err){
+      return res.render('index',{msg:err.message});
+    }
+
+    if (!req.file){
+      return res.render('index',{msg:'No file uploaded'});
+    }
+    const inputFilePath=`./uploads/${req.file.filename}`;
+    const compressed=fs.readFileSync(inputFilePath);
+    const decompressed=decompressRLE(compressed);
+
+    if (!fs.existsSync('./outputs')){
+      fs.mkdirSync('./outputs');
+    }
+    const outputFilePath=`./outputs/decompressed-${req.file.filename}`;
+    fs.writeFileSync(outputFilePath,decompressed);
+    res.download(outputFilePath);
   });
 });
 

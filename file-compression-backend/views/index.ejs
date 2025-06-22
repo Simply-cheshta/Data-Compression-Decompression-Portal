@@ -6,15 +6,23 @@
     <title>Data Compression Portal</title>
 </head>
 <body>
-    <h1>Upload a File for Compression (RLE)</h1>
+    <h1>Upload a File for Compression or Decompression(RLE)</h1>
 
     <% if (typeof msg !== 'undefined') { %>
         <p style="color: red;"><%= msg %></p>
     <% } %>
-
+    <h2>Compress a file using RLE</h2>
     <form action="/uploads" method="POST" enctype="multipart/form-data">
         <input type="file" name="myFile" required>
         <button type="submit">Compress (RLE)</button>
+    </form>
+
+    <hr/>
+
+    <h2>Decompress a RLE compressed file</h2>
+    <form action="/decompress" method="POST" enctype="multipart/form-data">
+        <input type="file" name="myFile" required>
+        <button type="submit">Decompress</button>
     </form>
 </body>
 </html>
