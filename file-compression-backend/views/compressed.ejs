@@ -6,13 +6,17 @@
     <title>Compression Results</title>
 </head>
 <body>
-    <h1>Compression Complete (RLE)</h1>
+    <h1>Compression Complete </h1>
 
     <p><strong>Original File:</strong> <%= originalFile %></p>
     <p><strong>Compressed File:</strong> <%= outputFile %></p>
     <p><strong>Original Size:</strong> <%= originalSize %> bytes</p>
     <p><strong>Compressed Size:</strong> <%= compressedSize %> bytes</p>
     <p><strong>Compression Ratio:</strong> <%= compressionRatio %>%</p>
+    <% if (typeof warning !== 'undefined' && warning) { %>
+        <p style="color: orange;"><%= warning %></p>
+    <% } %>
+
 
     <a href="/outputs/<%= outputFile %>" download>Download Compressed File</a>
     <br><br>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decompression Results</title>
+</head>
+<body>
+    <h1>Decompression Complete</h1>
+
+    <p><strong>Original File:</strong> <%= originalFile %></p>
+    <p><strong>Decompressed File:</strong> <%= outputFile %></p>
+    <p><strong>Compressed Size:</strong> <%= compressedSize %> bytes</p>
+    <p><strong>Decompressed Size:</strong> <%= decompressedSize %> bytes</p>
+    <p><strong>Decompression Ratio:</strong> <%= decompressionRatio %>%</p>
+
+    <a href="/outputs/<%= outputFile %>" download>Download Decompressed File</a>
+    <br><br>
+    <a href="/">Back to Upload</a>
+</body>
+</html>
