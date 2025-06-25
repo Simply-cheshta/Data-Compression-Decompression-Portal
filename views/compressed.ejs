@@ -18,6 +18,8 @@
           <li class="list-group-item"><strong>Original Size:</strong> <%= originalSize %> bytes</li>
           <li class="list-group-item"><strong>Compressed Size:</strong> <%= compressedSize %> bytes</li>
           <li class="list-group-item"><strong>Compression Ratio:</strong> <%= compressionRatio %>%</li>
+          <li class="list-group-item"><strong>Processing Time:</strong> <%= processingTime %> ms</li>
+
         </ul>
         <% if (typeof warning !== 'undefined' && warning) { %>
           <div class="alert alert-warning"><%= warning %></div>
