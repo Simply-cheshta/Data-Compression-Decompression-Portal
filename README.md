@@ -19,10 +19,10 @@ A web-based application to compress and decompress files using following algorit
 
 ## Tech Stack
 
-Frontend : HTML, EJS, Bootstrap 
-Backend  : Node.js, Express  
-File Uploads : Multer            
-Deployment : Render       
+Frontend : [HTML, EJS, Bootstrap]
+Backend  : [Node.js, Express]  
+File Uploads : [Multer]            
+Deployment : [Render]       
 
 
 
