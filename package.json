@@ -19,5 +19,8 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.10"
   },
-  "description": "A file compression and decompression portal using RLE, Huffman, and LZ77 algorithms."
-}
+  "description": "A file compression and decompression portal using RLE, Huffman, and LZ77 algorithms.",
+  "engines": {
+  "node": "22.x"
+  }
+  }
