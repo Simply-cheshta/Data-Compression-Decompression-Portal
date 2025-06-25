@@ -6,6 +6,8 @@ A web-based application to compress and decompress files using following algorit
  →LZ77.
 
 →Live Demo: https://data-compression-decompression-portal-eq3q.onrender.com  
+→Recorded Video : https://drive.google.com/file/d/1yfQBnlcWAyQcQeAqIjB0IijUsL77IhY7/view?usp=drive_link
+
 
 ## Features
  →Users can upload any file (text, image, binary).
