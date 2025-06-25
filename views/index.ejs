@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Compression Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Upload a File for Compression or Decompression</h1>
+
+    <% if (typeof msg !== 'undefined') { %>
+      <div class="alert alert-danger text-center"><%= msg %></div>
+    <% } %>
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">Compress a File</h4>
+        <form id="compressForm" action="/rle-compress" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label class="form-label">Select Algorithm:</label>
+            <select name="algorithm" id="compressAlgorithm" class="form-select" onchange="updateExplanation('compress'); updateFormAction('compress');">
+              <option value="rle">RLE</option>
+              <option value="huffman">Huffman</option>
+              <option value="lz77">LZ77</option>
+            </select>
+            <small class="form-text text-muted" id="compressExplanation">Run-Length Encoding (RLE) compresses sequences of the same data value into a single value and count.</small>
+          </div>
+
+          <div class="mb-3">
+            <input class="form-control" type="file" name="myFile" id="compressFileInput" required>
+            <div class="form-text" id="compressFileName"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Compress</button>
+
+          <div id="compressLoader" class="mt-3 d-none text-center">
+            <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Compressing...</span></div>
+            <p class="mt-2 text-muted">Compressing file...</p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">Decompress a File</h4>
+        <form id="decompressForm" action="/rle-decompress" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label class="form-label">Select Algorithm:</label>
+            <select name="algorithm" id="decompressAlgorithm" class="form-select" onchange="updateExplanation('decompress'); updateFormAction('decompress');">
+              <option value="rle">RLE</option>
+              <option value="huffman">Huffman</option>
+              <option value="lz77">LZ77</option>
+            </select>
+            <small class="form-text text-muted" id="decompressExplanation">Run-Length Encoding (RLE) compresses sequences of the same data value into a single value and count.</small>
+          </div>
+
+          <div class="mb-3">
+            <input class="form-control" type="file" name="myFile" id="decompressFileInput" required>
+            <div class="form-text" id="decompressFileName"></div>
+          </div>
+
+          <button type="submit" class="btn btn-success">Decompress</button>
+
+          <div id="decompressLoader" class="mt-3 d-none text-center">
+            <div class="spinner-border text-success" role="status"><span class="visually-hidden">Decompressing...</span></div>
+            <p class="mt-2 text-muted">Decompressing file...</p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div id="uploadToast" class="toast align-items-center text-bg-success border-0" role="alert">
+        <div class="d-flex">
+          <div class="toast-body">File uploaded successfully!</div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function updateExplanation(type) {
+      const algo = document.getElementById(type + 'Algorithm').value;
+      const explainMap = {
+        'rle': 'Run-Length Encoding (RLE) compresses sequences of the same data value into a single value and count.',
+        'huffman': 'Huffman Coding assigns variable-length codes to input characters based on frequency, enabling lossless compression.',
+        'lz77': 'LZ77 is a dictionary-based compression algorithm that replaces repeated occurrences with references to a single copy.'
+      };
+      document.getElementById(type + 'Explanation').innerText = explainMap[algo] || '';
+    }
+
+    function updateFormAction(type) {
+      const algo = document.getElementById(type + 'Algorithm').value;
+      document.getElementById(type + 'Form').action = `/${algo}-${type}`;
+    }
+
+    document.getElementById('compressFileInput').addEventListener('change', (e) => {
+      document.getElementById('compressFileName').innerText = 'Selected: ' + e.target.files[0]?.name || '';
+    });
+
+    document.getElementById('decompressFileInput').addEventListener('change', (e) => {
+      document.getElementById('decompressFileName').innerText = 'Selected: ' + e.target.files[0]?.name || '';
+    });
+
+    document.getElementById('compressForm').addEventListener('submit', () => {
+      document.getElementById('compressLoader').classList.remove('d-none');
+    });
+
+    document.getElementById('decompressForm').addEventListener('submit', () => {
+      document.getElementById('decompressLoader').classList.remove('d-none');
+    });
+  </script>
+</body>
+</html>
